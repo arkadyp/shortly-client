@@ -133,7 +133,11 @@ form input[type=text] {
   height: 46px;
   margin-bottom: 5px;
   padding: 10px;
+}
+
+.hidden {
   display: none;
+  transition: 2s;
 }
 
 .creator .message {

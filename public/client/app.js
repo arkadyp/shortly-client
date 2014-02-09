@@ -45,32 +45,42 @@ var shortlyApp = angular.module("shortlyApp", ['ngRoute'])
     }
   };
 })
-
+.directive('linkView', function() {
+  return {
+    restrict: 'EA',
+    scope: {
+      ngModel: '='
+    },
+    templateUrl: '/client/templates/linkView.html'
+  };
+})
 .controller('CreateLinkController', function($scope, $http){
   $scope.linkText = "";
 
   $scope.shortenUrl = function(){
-      $http({
-        method: 'POST',
-        url: '/links',
-        data: {url: $scope.linkText}
-      })
-      .success(function(data, status, headers, config){
-        console.log('posted new link');
-      })
-      .error(function(data, status, headers, config){
-        console.log('error posting link');
-      });
+    $scope.fetching = true;
+    $http({
+      method: 'POST',
+      url: '/links',
+      data: {url: $scope.linkText}
+    })
+    .success(function(data, status, headers, config){
+      $scope.fetching = false;
+      $scope.link = data;
+      console.log('posted new link');
+    })
+    .error(function(data, status, headers, config){
+      $scope.fetching = false;
+      $scope.fetchFail = true;
+      console.log('error posting link');
+    });
 
+    $scope.linkText = "";
+    // link.on('request', this.startSpinner, this);
+    // link.on('sync',    this.success,      this );
+    // link.on('error',   this.failure,      this );
 
-      // var link = new Shortly.Link( {url: $scope.linkText} );
-      // link.save();
-      $scope.linkText = "";
-      // link.on('request', this.startSpinner, this);
-      // link.on('sync',    this.success,      this );
-      // link.on('error',   this.failure,      this );
-
-    };
+  };
 });
 
 

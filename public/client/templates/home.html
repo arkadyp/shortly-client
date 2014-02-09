@@ -6,13 +6,5 @@
   <input type="text" name="searchLinks" placeholder="search links" ng-model="searchBox"></input>
 </form>
 <div class='link' ng-repeat="link in links | filter: searchBox | orderBy: displayOptions.orderBy : displayOptions.reverse">
-  <img src="/redirect_icon.png"/>
-  <div class="info">
-    <div class="visits"><span class="count">{{ link.visits }}</span>Visits</div>
-    <a class="title" href="">{{ link.title }}</a>
-    <div class="original">{{ link.url }}</div>
-    <div class="lastVisited">{{ link.lastClicked }}</div>
-    <a href="{{ link.base_url }}/{{ link.code }}">{{ link.base_url }}/{{ link.code }}</a>
-    <div class="lastVisited">{{ getLastClicked(link.lastclicked) }}</div>
-  </div>
+  <div link-view ng-model="link"></div>
 </div>

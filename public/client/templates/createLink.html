@@ -1,45 +1,20 @@
-<div class='creator'>
+<div class='creator' ng-init="fetching=false; fetchFail=false">
   <form>
     <input class="text" type="text" name="url" ng-model='linkText'>
     <input type="submit" value="Shorten" ng-click='shortenUrl()'>
   </form>
-  <img class="spinner" src="/spiffygif_46x46.gif">
-  <div class="message"></div>
+  <img class="spinner" ng-class="{hidden: !fetching}" src="/spiffygif_46x46.gif">
+  <div class="message error" ng-class="{hidden: !fetchFail}">Please Enter a valid URL</div>
 </div>
 
+<div link-view ng-model="link"></div>
 
 <!-- Shortly.LinkCreateView = Backbone.View.extend({
 
-  className: 'creator',
-
-  template: _.template(' \
-    <form> \
-        <input class="text" type="text" name="url"> \
-        <input type="submit" value="Shorten"> \
-    </form> \
-    <img class="spinner" src="/spiffygif_46x46.gif"> \
-    <div class="message"></div>'
-  ),
-
-  events: {
-    "submit": "shortenUrl"
-  },
-
-  render: function() {
-    this.$el.html( this.template() );
-    return this;
-  },
-
-  shortenUrl: function(e){
-    e.preventDefault();
-    var $form = this.$el.find('form .text');
-    var link = new Shortly.Link( {url: $form.val()} )
     link.on('request', this.startSpinner, this);
     link.on('sync',    this.success,      this );
     link.on('error',   this.failure,      this );
-    $form.val('');
-    link.save();
-  },
+
 
   success: function(link){
     this.stopSpinner();
@@ -65,3 +40,4 @@
   }
 
 }); -->
+

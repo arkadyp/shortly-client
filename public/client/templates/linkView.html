@@ -1,0 +1,11 @@
+<div ng-if="ngModel">
+  <img src="/redirect_icon.png"/>
+  <div class="info">
+    <div class="visits"><span class="count">{{ ngModel.visits }}</span>Visits</div>
+    <a class="title" href="">{{ ngModel.title }}</a>
+    <div class="original">{{ ngModel.url }}</div>
+    <div class="lastVisited">{{ ngModel.lastClicked }}</div>
+    <a href="{{ ngModel.base_url }}/{{ ngModel.code }}">{{ ngModel.base_url }}/{{ ngModel.code }}</a>
+    <div class="lastVisited">{{ getLastClicked(ngModel.lastclicked) }}</div>
+  </div>
+</div>
