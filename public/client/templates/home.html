@@ -1,8 +1,8 @@
 <label>Filter by: </label>
 <form class="filterLinks">
-  <input type="radio" name="sortBy" value="visits" checked>Visits</input>
-  <input type="radio" name="sortBy" value="lastclicked">Time</input>
-  <button class='reverseLinks' ng-click="sayHello()">Reverse</button>
+  <input type="radio" name="sortBy" value="visits" checked ng-click='displayOptions.orderBy = "visits"'>Visits</input>
+  <input type="radio" name="sortBy" value="lastclicked" ng-click='displayOptions.orderBy = "lastclicked"'>Time</input>
+  <button class='reverseLinks' ng-click="displayOptions.reverse = !displayOptions.reverse">Reverse</button>
   <input type="text" name="searchLinks" placeholder="search links" ng-model="searchBox"></input>
 </form>
 <div class='link' ng-repeat="link in links | filter: searchBox | orderBy: displayOptions.orderBy : displayOptions.reverse">
